@@ -3,7 +3,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.min.js"></script>
 <script type="module">
     import sketchUtils from '../utils/sketchUtils.mjs';
-
     new p5(sketchUtils.wrapSketch(s => {
         class TreeItem {
             constructor(p, v, a) {
@@ -59,7 +58,7 @@
                     const v2 = item.v.copy();
                     v2.rotate(rotateAngle);
                     treeItems.push(new TreeItem(item.p.copy(), item.v.copy(), v2));
-                } else if (s.random() < killRate && treeItems.length > 2) {
+                } else if (item.p.x < 0 || item.p.x > s.width || item.p.y < 0 || item.p.y > s.height || s.random() < killRate && treeItems.length > 2) {
                     treeItems.splice(i, 1);
                 }
             }
